@@ -53,8 +53,39 @@ public class SwaggerConfig {
                         .title("Employee Management System API")
                         .version("1.0")
                         .description("API documentation for the Employee Management System"));
-//link of swagger "http://localhost:8080/swagger-ui/index.html"
     }
+}
+```
+
+### JPA Entity Configuration
+
+The `Employee` entity is configured as follows:
+```java
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+@Entity
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @NotEmpty(message = "First name is required")
+    private String firstName;
+
+    @NotEmpty(message = "Last name is required")
+    private String lastName;
+
+    @NotEmpty(message = "Email is required")
+    @Email(message = "Email should be valid")
+    private String email;
+
+    // Getters and setters
 }
 ```
 
