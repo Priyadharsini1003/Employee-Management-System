@@ -1,4 +1,3 @@
-```markdown
 # Employee Management System
 
 ## Demo
@@ -54,38 +53,6 @@ public class SwaggerConfig {
                         .version("1.0")
                         .description("API documentation for the Employee Management System"));
     }
-}
-```
-
-### JPA Entity Configuration
-
-The `Employee` entity is configured as follows:
-```java
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
-@Entity
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @NotEmpty(message = "First name is required")
-    private String firstName;
-
-    @NotEmpty(message = "Last name is required")
-    private String lastName;
-
-    @NotEmpty(message = "Email is required")
-    @Email(message = "Email should be valid")
-    private String email;
-
-    // Getters and setters
 }
 ```
 
@@ -192,7 +159,39 @@ public class Employee {
 }
 ```
 
+## JPA Entity Mapping
+
+### Employee Entity
+Ensure you have the correct JPA annotations in the `Employee` entity class to map it to the database table:
+```java
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employees")
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @NotEmpty(message = "First name is required")
+    private String firstName;
+
+    @NotEmpty(message = "Last name is required")
+    private String lastName;
+
+    @NotEmpty(message = "Email is required")
+    @Email(message = "Email should be valid")
+    private String email;
+
+    // Getters and setters
+}
+```
+
 ## Conclusion
 
-This documentation provides the necessary steps to set up, configure, and run the Employee Management System project. It also details the available endpoints, request and response formats, and data validation rules.
-```
+This documentation provides the necessary steps to set up, configure, and run the Employee Management System project. It also details the available endpoints, request and response formats, data validation rules, and JPA entity mapping.
